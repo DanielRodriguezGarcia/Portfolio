@@ -3,41 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio ASIR</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <title>Portfolio - Daniel Rodríguez García</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1>Portfolio de ASIR</h1>
-        <p>Estudiante de Administración de Sistemas Informáticos en Red</p>
+        <nav class="navbar">
+            <div class="logo">Daniel Rodríguez García</div>
+            <ul class="nav-links">
+                <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section id="skills">
-        <h2>Habilidades Técnicas</h2>
-        <ul>
-            <li>Administración de servidores Linux y Windows</li>
-            <li>Redes y Seguridad (Firewalls, VPNs, VLANs)</li>
-            <li>Virtualización con VMware, Proxmox, Docker</li>
-            <li>Monitorización con Zabbix</li>
-            <li>Automatización con Bash, PowerShell y Python</li>
-        </ul>
+    <section id="about" class="section about">
+        <h2>Sobre mí</h2>
+        <p>Hola, soy <strong>Daniel Rodríguez García</strong>, graduado en ASIR (Administración de Sistemas Informáticos en Red). Me apasiona la tecnología y disfruto resolviendo problemas complejos relacionados con redes, servidores y desarrollo web.</p>
     </section>
 
-    <section id="projects">
-        <h2>Proyectos Destacados</h2>
-        <div class="project">
-            <h3>Implementación de Active Directory</h3>
-            <p>Configuración de Windows Server con AD, DNS y GPOs.</p>
+    <section id="skills" class="section skills">
+        <h2>Habilidades</h2>
+        <div class="skill-container">
+            <div class="skill-item"><i class="fa-brands fa-docker"></i> Docker</div>
+            <div class="skill-item"><i class="fa-solid fa-server"></i> Nginx</div>
+            <div class="skill-item"><i class="fa-brands fa-js"></i> JavaScript</div>
+            <div class="skill-item"><i class="fa-brands fa-html5"></i> HTML</div>
+            <div class="skill-item"><i class="fa-brands fa-css3-alt"></i> CSS</div>
+            <div class="skill-item"><i class="fa-solid fa-wifi"></i> Wireshark</div>
+            <div class="skill-item"><i class="fa-solid fa-database"></i> MySQL</div>
+            <div class="skill-item"><i class="fa-solid fa-network-wired"></i> Packet Tracer</div>
+            <div class="skill-item"><i class="fa-solid fa-laptop"></i> VMware</div>
         </div>
-        <div class="project">
-            <h3>Firewall y VPN con pfSense</h3>
-            <p>Seguridad en redes mediante firewall y túneles VPN.</p>
-        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <h2>Contacto</h2>
+        <p>Puedes enviarme un mensaje utilizando el formulario a continuación:</p>
+        <form method="POST" class="contact-form">
+            {{ form.hidden_tag() }}
+            <label for="name">Nombre:</label>
+            {{ form.name(class="form-input", id="name") }}
+
+            <label for="email">Email:</label>
+            {{ form.email(class="form-input", id="email") }}
+
+            <label for="message">Mensaje:</label>
+            {{ form.message(class="form-input", id="message") }}
+
+            {{ form.submit(class="form-button") }}
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
     </section>
 
     <footer>
-        <p>Contacto: <a href="mailto:tuemail@email.com">danielrg260604@gmail.com</a></p>
-        <p><a href="https://github.com/tuusuario" target="_blank">GitHub</a> | <a href="https://linkedin.com/in/tuusuario" target="_blank">LinkedIn</a></p>
+        <p>&copy; 2025 Daniel Rodríguez García. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
