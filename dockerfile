@@ -13,5 +13,5 @@ RUN pip install -r requirements.txt
 # Exponer el puerto 5000
 EXPOSE 5000
 
-# Comando para ejecutar la aplicación
-CMD ["python", "app.py"]
+#Comando para correr la app con gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
